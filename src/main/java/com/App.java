@@ -1,5 +1,10 @@
+package com;
+
 import java.util.Scanner;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class App {
     private final Scanner keyboard = new Scanner(System.in);
     public static void main(String[] args) {
