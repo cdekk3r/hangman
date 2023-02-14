@@ -13,10 +13,10 @@ public class App {
             printMainMenu();
             int mainMenuSelection = promptForMenuSelection("Please choose an option: ");
             if(mainMenuSelection == 1) {
-                System.out.println("All teams here");
+                System.out.println("All competitions here");
             }
             else if (mainMenuSelection == 2){
-                System.out.println("All stats here");
+                System.out.println("All teams here");
             }
             else if (mainMenuSelection == 0){
                 break;
@@ -26,8 +26,8 @@ public class App {
     }
 
     private void printMainMenu() {
-        System.out.println("1: All Teams");
-        System.out.println("2: Stats");
+        System.out.println("1: Competitions");
+        System.out.println("2: Teams");
         System.out.println("0: Exit");
         System.out.println();
     }
