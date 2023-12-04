@@ -27,6 +27,21 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.velopayments</groupId>
+			<artifactId>java-spring-resttemplate</artifactId>
+			<version>2.32.2</version>
+		</dependency>
+        <dependency>
+            <groupId>net.eusashead.hateoas</groupId>
+            <artifactId>spring-responseentitybuilder</artifactId>
+            <version>1.1.0.RELEASE</version>
+        </dependency>
+		<dependency>
+			<groupId>net.eusashead.hateoas</groupId>
+			<artifactId>spring-halbuilder-page</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<build>
