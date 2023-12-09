@@ -14,44 +14,52 @@ public class App {
 
         printMainMenu();
         int mainMenuSelection = promptForMenuSelection("Please choose an option: ");
-        while(true) {
-            // Main menu loop
-            
-            if(mainMenuSelection == 1) {
-                    String spaces = createSpaces();
-                    String word = generateWord();
-                    System.out.println(spaces);
-                    int count = word.length();
 
-                    String letterSelection = promptForLetterSelection("Guess a letter: ");
+        if(mainMenuSelection == 1) {
+            String spaces = createSpaces();
+            String word = generateWord().toLowerCase();
+            System.out.println(spaces);
+            int count = word.length();
 
-                    if(word.indexOf(letterSelection) == -1) {
-                        count--;
-                        if(count == 0) {
-                            System.out.println("Game Over! The word was " + word);
-                            printMainMenu();
-                        }
-                        System.out.println("Wrong! " + count + " guesses left!");
-                    } else {
+            while(true) {
 
-                        System.out.println("Correct! Guess again.");
-                        String updatedSpaces = "";
+                if(spaces.equals(word)) {
+                    System.out.println("You've won!");
+                    System.exit(0);
+                }
 
-                        for(int i = 0; i<word.length(); i++) {
-                            if(word.charAt(i) == letterSelection.charAt(0)) {
-                                updatedSpaces += letterSelection;
-                            } else {
-                                updatedSpaces += "__ ";
-                            }
-                        }
-                        spaces = updatedSpaces;
+                String letterSelection = promptForLetterSelection("Guess a letter: ");
+                letterSelection = letterSelection.toLowerCase();
+
+
+                if (spaces.contains(letterSelection)) {
+                    System.out.println("You already guessed this number. Guess again.");
+                } else if(!word.contains(letterSelection)) {
+                    count--;
+                    System.out.println("Wrong! " + count + " guesses left!");
+                    if(count == 0) {
+                        System.out.println("Game Over! The word was " + word);
+                        break;
                     }
-            }
-            else if (mainMenuSelection == 0){
-                break;
-            }
-        }
+                } else {
 
+                    System.out.println("Correct! Guess again.");
+                    String updatedSpaces = "";
+                    
+                    for(int i = 0; i<word.length(); i++) {
+                        if(spaces.charAt(i) == '_' && word.charAt(i) == letterSelection.charAt(0)) {
+                            updatedSpaces += letterSelection;
+                        } else {
+                            updatedSpaces += spaces.charAt(i);
+                        }
+                    }
+                    spaces = updatedSpaces;
+                }
+                System.out.println(spaces);
+            }
+        } else if (mainMenuSelection == 0){
+            System.exit(0);
+        }
     }
 
     private void printMainMenu() {
@@ -73,13 +81,13 @@ public class App {
 
     private String promptForLetterSelection(String prompt) {
         System.out.print(prompt);
-        String letterSelection;
-        // try {
+        String letterSelection ="";
+        try {
             letterSelection = keyboard.nextLine();
-        // } 
-        // catch (NumberFormatException e) {
-        //     letterSelection = -1;
-        // }
+        } 
+        catch (NumberFormatException e) {
+            System.out.println(e);
+        }
         return letterSelection;
     }
 
@@ -92,7 +100,7 @@ public class App {
         int length = word.length();
         String spaces = "";
         while(length > 0) {
-            spaces += "__ ";
+            spaces += "_";
             length--;
         }
         return spaces;
