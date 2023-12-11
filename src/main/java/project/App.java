@@ -20,6 +20,7 @@ public class App {
             String word = generateWord().toLowerCase();
             System.out.println(spaces);
             int count = word.length();
+            String wrongGuesses = "";
 
             while(true) {
 
@@ -32,10 +33,11 @@ public class App {
                 letterSelection = letterSelection.toLowerCase();
 
 
-                if (spaces.contains(letterSelection)) {
-                    System.out.println("You already guessed this number. Guess again.");
+                if (spaces.contains(letterSelection) || wrongGuesses.contains(letterSelection)) {
+                    System.out.println("You already guessed this letter. Guess again.");
                 } else if(!word.contains(letterSelection)) {
                     count--;
+                    wrongGuesses += letterSelection;
                     System.out.println("Wrong! " + count + " guesses left!");
                     if(count == 0) {
                         System.out.println("Game Over! The word was " + word);
@@ -47,7 +49,7 @@ public class App {
                     String updatedSpaces = "";
                     
                     for(int i = 0; i<word.length(); i++) {
-                        if(spaces.charAt(i) == '_' && word.charAt(i) == letterSelection.charAt(0)) {
+                        if(word.charAt(i) == letterSelection.charAt(0)) {
                             updatedSpaces += letterSelection;
                         } else {
                             updatedSpaces += spaces.charAt(i);
