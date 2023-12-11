@@ -32,8 +32,10 @@ public class App {
                 String letterSelection = promptForLetterSelection("Guess a letter: ");
                 letterSelection = letterSelection.toLowerCase();
 
-
-                if (spaces.contains(letterSelection) || wrongGuesses.contains(letterSelection)) {
+                if(letterSelection.length() > 1 || letterSelection == "" || Character.isWhitespace(letterSelection.charAt(0))) {
+                    System.out.println("Please choose 1 letter.");
+                    continue;
+                } else if (spaces.contains(letterSelection) || wrongGuesses.contains(letterSelection)) {
                     System.out.println("You already guessed this letter. Guess again.");
                 } else if(!word.contains(letterSelection)) {
                     count--;
