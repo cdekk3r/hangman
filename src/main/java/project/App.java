@@ -30,10 +30,9 @@ public class App {
                 }
 
                 String letterSelection = promptForLetterSelection("Guess a letter: ");
-                letterSelection = letterSelection.toLowerCase();
 
-                if(letterSelection.length() > 1 || letterSelection == "" || Character.isWhitespace(letterSelection.charAt(0))) {
-                    System.out.println("Please choose 1 letter.");
+                if(letterSelection.length() > 1 || letterSelection == "" || Character.isWhitespace(letterSelection.charAt(0)) || Character.isDigit(letterSelection.charAt(0))){
+                    System.out.println("Please choose a letter.");
                     continue;
                 } else if (spaces.contains(letterSelection) || wrongGuesses.contains(letterSelection)) {
                     System.out.println("You already guessed this letter. Guess again.");
@@ -78,7 +77,7 @@ public class App {
         try {
             menuSelection = Integer.parseInt(keyboard.nextLine());
         } catch (NumberFormatException e){
-            menuSelection = -1;
+            menuSelection = 0;
         }
         return menuSelection;
     }
@@ -92,7 +91,7 @@ public class App {
         catch (NumberFormatException e) {
             System.out.println(e);
         }
-        return letterSelection;
+        return letterSelection.toLowerCase();
     }
 
     private String generateWord() {
