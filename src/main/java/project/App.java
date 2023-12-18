@@ -86,10 +86,12 @@ public class App {
         System.out.print(prompt);
         String letterSelection ="";
         try {
+
             letterSelection = keyboard.nextLine();
+
         } 
-        catch (NumberFormatException e) {
-            System.out.println(e);
+        catch (Exception e) {
+            System.out.println("Please choose a letter.");
         }
         return letterSelection.toLowerCase();
     }
